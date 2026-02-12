@@ -22,6 +22,8 @@ private slots:
 
     void btnResetClicked();
 
+    void btnRandomizeClicked();
+
 private:
     Ui::MainWindow *ui;
 

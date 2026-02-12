@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include <QRandomGenerator>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -11,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->sliderGreen, &QSlider::valueChanged, this, &MainWindow::sliderValueChanged);
     connect(ui->sliderBlue, &QSlider::valueChanged, this, &MainWindow::sliderValueChanged);
     connect(ui->btnReset, &QPushButton::clicked, this, &MainWindow::btnResetClicked);
+    connect(ui->btnRandomize, &QPushButton::clicked, this, &MainWindow::btnRandomizeClicked);
 
     btnResetClicked();
 }
@@ -56,4 +58,11 @@ void MainWindow::btnResetClicked()
     ui->sliderRed->setValue(127);
     ui->sliderGreen->setValue(127);
     ui->sliderBlue->setValue(127);
+}
+
+void MainWindow::btnRandomizeClicked()
+{
+    ui->sliderRed->setValue(QRandomGenerator::global()->bounded(0, 256));
+    ui->sliderGreen->setValue(QRandomGenerator::global()->bounded(0, 256));
+    ui->sliderBlue->setValue(QRandomGenerator::global()->bounded(0, 256));
 }
