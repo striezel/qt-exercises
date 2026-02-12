@@ -167,6 +167,9 @@
       <height>71</height>
      </rect>
     </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
     <property name="frameShape">
      <enum>QFrame::Shape::Box</enum>
     </property>

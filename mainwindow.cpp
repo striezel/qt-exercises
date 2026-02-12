@@ -6,9 +6,44 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    connect(ui->sliderRed, &QSlider::valueChanged, this, &MainWindow::sliderValueChanged);
+    connect(ui->sliderGreen, &QSlider::valueChanged, this, &MainWindow::sliderValueChanged);
+    connect(ui->sliderBlue, &QSlider::valueChanged, this, &MainWindow::sliderValueChanged);
+    connect(ui->btnReset, &QPushButton::clicked, this, &MainWindow::btnResetClicked);
+
+    btnResetClicked();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::sliderValueChanged(int value)
+{
+    ui->lblRedValue->setText(QString::number(ui->sliderRed->value()));
+    ui->lblGreenValue->setText(QString::number(ui->sliderGreen->value()));
+    ui->lblBlueValue->setText(QString::number(ui->sliderBlue->value()));
+
+    updateColourLabel();
+}
+
+void MainWindow::updateColourLabel()
+{
+    const int r = ui->sliderRed->value();
+    const int g = ui->sliderGreen->value();
+    const int b = ui->sliderBlue->value();
+
+    QPalette palette = this->palette();
+    palette.setColor(QPalette::ColorRole::Window, QColor(r, g, b));
+    ui->lblColour->setPalette(palette);
+}
+
+
+void MainWindow::btnResetClicked()
+{
+    ui->sliderRed->setValue(127);
+    ui->sliderGreen->setValue(127);
+    ui->sliderBlue->setValue(127);
 }

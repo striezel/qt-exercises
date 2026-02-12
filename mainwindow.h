@@ -17,7 +17,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void sliderValueChanged(int value);
+
+    void btnResetClicked();
+
 private:
     Ui::MainWindow *ui;
+
+    void updateColourLabel();
 };
 #endif // MAINWINDOW_H
