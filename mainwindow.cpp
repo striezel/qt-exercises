@@ -38,6 +38,16 @@ void MainWindow::updateColourLabel()
     QPalette palette = this->palette();
     palette.setColor(QPalette::ColorRole::Window, QColor(r, g, b));
     ui->lblColour->setPalette(palette);
+
+    updateHexValue(r, g, b);
+}
+
+void MainWindow::updateHexValue(const int r, const int g, const int b)
+{
+    // Everybody hates printf-style format specifiers.
+    // But this it C++17 and not C++20, so no std::format() is available here.
+    QString hex = QString::asprintf("0x%02X%02X%02X", r, g, b);
+    ui->lblHexValue->setText(hex);
 }
 
 

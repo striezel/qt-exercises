@@ -26,5 +26,6 @@ private:
     Ui::MainWindow *ui;
 
     void updateColourLabel();
+    void updateHexValue(const int r, const int g, const int b);
 };
 #endif // MAINWINDOW_H
