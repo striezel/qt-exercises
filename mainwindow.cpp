@@ -8,12 +8,18 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    // connect slider events
     connect(ui->sliderRed, &QSlider::valueChanged, this, &MainWindow::sliderValueChanged);
     connect(ui->sliderGreen, &QSlider::valueChanged, this, &MainWindow::sliderValueChanged);
     connect(ui->sliderBlue, &QSlider::valueChanged, this, &MainWindow::sliderValueChanged);
+    // connect buttons
     connect(ui->btnReset, &QPushButton::clicked, this, &MainWindow::btnResetClicked);
     connect(ui->btnRandomize, &QPushButton::clicked, this, &MainWindow::btnRandomizeClicked);
+    // connect menu bar items
+    connect(ui->actionReset, &QAction::triggered, this, &MainWindow::btnResetClicked);
+    connect(ui->actionExit, &QAction::triggered, this, &MainWindow::close);
 
+    // Start with all values reset to defaults.
     btnResetClicked();
 }
 
