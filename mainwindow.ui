@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>564</width>
+    <width>561</width>
     <height>271</height>
    </rect>
   </property>
@@ -235,7 +235,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>564</width>
+     <width>561</width>
      <height>22</height>
     </rect>
    </property>
@@ -249,7 +249,6 @@
    </widget>
    <addaction name="menuProgramm"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <action name="actionReset">
    <property name="icon">
     <iconset theme="edit-undo"/>
