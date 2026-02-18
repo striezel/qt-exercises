@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSet>
+#include <QString>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -17,7 +19,12 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void actionOpenTriggered();
+
 private:
     Ui::MainWindow *ui;
+
+    //QSet<QString> getAvailableTables(const QString& dbFile, bool& ok);
 };
 #endif // MAINWINDOW_H
