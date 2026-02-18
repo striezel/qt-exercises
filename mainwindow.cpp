@@ -34,7 +34,7 @@ void MainWindow::actionOpenTriggered()
     }
 
     bool ok = false;
-    QSet<QString> tables = getAvailableTables(path, ok);
+    const QSet<QString> tables = getAvailableTables(path, ok);
     if (!ok)
     {
         // It's probably not a SQLite database.
@@ -43,6 +43,11 @@ void MainWindow::actionOpenTriggered()
     }
 
     ui->cbTable->clear();
+    for (const QString& tbl: tables)
+    {
+        ui->cbTable->addItem(tbl);
+    }
+    ui->tableWidget->clear();
 }
 
 QSet<QString> MainWindow::getAvailableTables(const QString &dbFile, bool& ok)
@@ -55,16 +60,20 @@ QSet<QString> MainWindow::getAvailableTables(const QString &dbFile, bool& ok)
     if (!db.open())
     {
         qDebug() << "Fehler beim Öffnen der Datenbank.";
+        QSqlDatabase::removeDatabase("QSQLITE");
         ok = false;
         return result;
     }
 
     QSqlQuery query(db);
-    if (!query.exec("SELECT seq, name FROM pragma_database_list ORDER BY name ASC;"))
+    // const QString sql = "SELECT seq, name FROM pragma_database_list ORDER BY name ASC;"
+    const QString sql = "SELECT name FROM sqlite_sequence ORDER BY name ASC;";
+    if (!query.exec(sql))
     {
         qDebug() << "Failed to query available databases.";
         db.close();
         ok = false;
+        QSqlDatabase::removeDatabase("QSQLITE");
         return result;
     }
 
@@ -73,6 +82,7 @@ QSet<QString> MainWindow::getAvailableTables(const QString &dbFile, bool& ok)
         result.insert(query.value("name").toString());
     }
     db.close();
+    QSqlDatabase::removeDatabase("QSQLITE");
 
     ok = true;
     return result;
