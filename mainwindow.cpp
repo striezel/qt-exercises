@@ -23,7 +23,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::actionOpenTriggered()
 {
-    /*QString path = QFileDialog::getOpenFileName(
+    QString path = QFileDialog::getOpenFileName(
         this, "Datenbank öffnen ...",
         "C:/",
         "SQLite-Datenbanken (*.db;*.sqlite);;Alle Dateien (*.*)");
@@ -42,10 +42,10 @@ void MainWindow::actionOpenTriggered()
         return;
     }
 
-    ui->cbTable.clear();*/
+    ui->cbTable->clear();
 }
 
-/*QSet<QString> MainWindow::getAvailableTables(const QString &dbFile, bool& ok)
+QSet<QString> MainWindow::getAvailableTables(const QString &dbFile, bool& ok)
 {
     QSet<QString> result;
 
@@ -76,4 +76,4 @@ void MainWindow::actionOpenTriggered()
 
     ok = true;
     return result;
-}*/
+}

@@ -25,6 +25,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    //QSet<QString> getAvailableTables(const QString& dbFile, bool& ok);
+    QSet<QString> getAvailableTables(const QString& dbFile, bool& ok);
 };
 #endif // MAINWINDOW_H
