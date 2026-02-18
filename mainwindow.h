@@ -22,9 +22,15 @@ public:
 private slots:
     void actionOpenTriggered();
 
+    void cbTableCurrentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
 
+    QString dbPath;
+
     QSet<QString> getAvailableTables(const QString& dbFile, bool& ok);
+
+    void showTableContent(const QString& table);
 };
 #endif // MAINWINDOW_H
