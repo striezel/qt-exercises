@@ -138,6 +138,15 @@ void MainWindow::showTableContent(const QString &table)
         return;
     }
 
+    // show field names in header
+    QSqlRecord record = query.record();
+    for (int c = 0; c < num_cols; ++c)
+    {
+        QTableWidgetItem* headerItem = new QTableWidgetItem(record.fieldName(c));
+        ui->tableWidget->setHorizontalHeaderItem(c, headerItem);
+    }
+
+    // add actual data
     int current_row = 0;
     while (query.next())
     {
