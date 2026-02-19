@@ -37,7 +37,7 @@ void MainWindow::actionOpenTriggered()
     }
 
     bool ok = false;
-    const QSet<QString> tables = getAvailableTables(path, ok);
+    const QStringList tables = getAvailableTables(path, ok);
     if (!ok)
     {
         // It's probably not a SQLite database.
@@ -57,9 +57,9 @@ void MainWindow::actionOpenTriggered()
     showTableContent(first);
 }
 
-QSet<QString> MainWindow::getAvailableTables(const QString &dbFile, bool& ok)
+QStringList MainWindow::getAvailableTables(const QString &dbFile, bool& ok)
 {
-    QSet<QString> result;
+    QStringList result;
 
     QSqlDatabase db;
     db = QSqlDatabase::addDatabase("QSQLITE");
@@ -88,7 +88,7 @@ QSet<QString> MainWindow::getAvailableTables(const QString &dbFile, bool& ok)
 
     while (query.next())
     {
-        result.insert(query.value("tbl_name").toString());
+        result.append(query.value("tbl_name").toString());
     }
     db.close();
     QSqlDatabase::removeDatabase("QSQLITE");

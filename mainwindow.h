@@ -2,8 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QSet>
 #include <QString>
+#include <QStringList>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -29,7 +29,7 @@ private:
 
     QString dbPath;
 
-    QSet<QString> getAvailableTables(const QString& dbFile, bool& ok);
+    QStringList getAvailableTables(const QString& dbFile, bool& ok);
 
     void showTableContent(const QString& table);
 };
