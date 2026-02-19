@@ -74,7 +74,9 @@ QSet<QString> MainWindow::getAvailableTables(const QString &dbFile, bool& ok)
 
     QSqlQuery query(db);
     // const QString sql = "SELECT seq, name FROM pragma_database_list ORDER BY name ASC;"
-    const QString sql = "SELECT name FROM sqlite_sequence ORDER BY name ASC;";
+    // sqlite_sequence only exists for tables with auto-increment columns.
+    // const QString sql = "SELECT name FROM sqlite_sequence ORDER BY name ASC;";
+    const QString sql = "SELECT tbl_name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';";
     if (!query.exec(sql))
     {
         qDebug() << "Failed to query available databases.";
@@ -86,7 +88,7 @@ QSet<QString> MainWindow::getAvailableTables(const QString &dbFile, bool& ok)
 
     while (query.next())
     {
-        result.insert(query.value("name").toString());
+        result.insert(query.value("tbl_name").toString());
     }
     db.close();
     QSqlDatabase::removeDatabase("QSQLITE");
