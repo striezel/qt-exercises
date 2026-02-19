@@ -67,6 +67,7 @@ QStringList MainWindow::getAvailableTables(const QString &dbFile, bool& ok)
     if (!db.open())
     {
         qDebug() << "Fehler beim Öffnen der Datenbank.";
+        statusBar()->showMessage("Öffnen der Datenbank ist fehlgeschlagen.", 5000);
         QSqlDatabase::removeDatabase("QSQLITE");
         ok = false;
         return result;
@@ -79,7 +80,8 @@ QStringList MainWindow::getAvailableTables(const QString &dbFile, bool& ok)
     const QString sql = "SELECT tbl_name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';";
     if (!query.exec(sql))
     {
-        qDebug() << "Failed to query available databases.";
+        qDebug() << "Failed to query available database tables.";
+        statusBar()->showMessage("Ermittling der verfügbaren Tabellen in der Datenbank ist fehlgeschlagen.", 5000);
         db.close();
         ok = false;
         QSqlDatabase::removeDatabase("QSQLITE");
@@ -106,6 +108,7 @@ void MainWindow::showTableContent(const QString &table)
     if (!db.open())
     {
         qDebug() << "Failed to open DB to display content.";
+        statusBar()->showMessage("Öffnen der Datenbank fehlgeschlagen", 5000);
         return;
     }
 
@@ -117,6 +120,7 @@ void MainWindow::showTableContent(const QString &table)
         qDebug() << "Query for number of rows failed.";
         const auto error = query.lastError();
         qDebug() << error.text();
+        statusBar()->showMessage("Ermittlung der Zeilenanzahl ist fehlgeschlagen: " + error.text(), 5000);
         db.close();
         return;
     }
@@ -128,15 +132,18 @@ void MainWindow::showTableContent(const QString &table)
     {
         qDebug() << "Query for number of columns failed.";
         db.close();
+        statusBar()->showMessage("Ermittlung der Spaltenanzahl ist fehlgeschlagen", 5000);
         return;
     }
     const int num_cols = query.record().count();
     qDebug() << "Anzahl Spalten: " << num_cols;
+    ui->tableWidget->clear();
     ui->tableWidget->setColumnCount(num_cols);
     ui->tableWidget->setRowCount(num_rows);
     if (!query.exec("SELECT * FROM " + table + ";"))
     {
         qDebug() << "Query for table data failed.";
+        statusBar()->showMessage("Abfrage der Daten fehlgeschlagen", 5000);
         return;
     }
 
