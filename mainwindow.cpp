@@ -7,6 +7,7 @@
 #include <QtSql/QSqlError>
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSqlRecord>
+#include <QFileInfo>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -17,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::actionOpenTriggered);
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::close);
     connect(ui->cbTable, &QComboBox::currentIndexChanged, this, &MainWindow::cbTableCurrentIndexChanged);
+
+    initialDirectory = "C:/";
 }
 
 MainWindow::~MainWindow()
@@ -28,7 +31,7 @@ void MainWindow::actionOpenTriggered()
 {
     QString path = QFileDialog::getOpenFileName(
         this, "Datenbank öffnen ...",
-        "C:/",
+        initialDirectory,
         "SQLite-Datenbanken (*.db;*.sqlite);;Alle Dateien (*.*)");
     if (path.isEmpty())
     {
@@ -55,6 +58,9 @@ void MainWindow::actionOpenTriggered()
     ui->tableWidget->clear();
     QString first = *(tables.begin());
     showTableContent(first);
+
+    const QFileInfo fi(path);
+    initialDirectory = fi.absolutePath();
 }
 
 QStringList MainWindow::getAvailableTables(const QString &dbFile, bool& ok)

@@ -28,6 +28,7 @@ private:
     Ui::MainWindow *ui;
 
     QString dbPath;
+    QString initialDirectory;
 
     QStringList getAvailableTables(const QString& dbFile, bool& ok);
 
