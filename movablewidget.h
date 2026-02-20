@@ -20,11 +20,14 @@ public:
     /// Set pointer to other widget - used in collision detection.
     void setOther(MovableWidget* other);
 
+    void setCollidingColour(const QColor col);
+    void setCollisionFreeColour(const QColor col);
+
     /// colour when widget collides with other widget
-    static const QColor collidingColour;
+    static const QColor defaultCollidingColour;
 
     /// colour when widget does not collide
-    static const QColor collisionFreeColour;
+    static const QColor defaultCollisionFreeColour;
 
 private:
     Ui::MovableWidget *ui;
@@ -34,6 +37,9 @@ private:
 
     // pointer to other movable widget (if any)
     const MovableWidget* other;
+
+    QColor collidingColour;
+    QColor collisionFreeColour;
 
     // Checks whether the widget collides with the other widget.
     // If so, the colour of the widget changes.

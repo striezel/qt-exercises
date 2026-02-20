@@ -1,13 +1,15 @@
 #include "movablewidget.h"
 #include "ui_movablewidget.h"
 
-const QColor MovableWidget::collidingColour = QColor(255, 0, 0);
-const QColor MovableWidget::collisionFreeColour = QColor(0, 156, 0);
+const QColor MovableWidget::defaultCollidingColour = QColor(255, 0, 0);
+const QColor MovableWidget::defaultCollisionFreeColour = QColor(0, 156, 0);
 
 MovableWidget::MovableWidget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::MovableWidget)
     , other(nullptr)
+    , collidingColour(defaultCollidingColour)
+    , collisionFreeColour(defaultCollisionFreeColour)
 {
     ui->setupUi(this);
     // Required to make sure we get mouse events also when no button is pressed.
@@ -24,6 +26,22 @@ void MovableWidget::setOther(MovableWidget *other)
     if (other != this)
     {
         this->other = other;
+    }
+}
+
+void MovableWidget::setCollidingColour(const QColor col)
+{
+    if (col.isValid())
+    {
+        collidingColour = col;
+    }
+}
+
+void MovableWidget::setCollisionFreeColour(const QColor col)
+{
+    if (col.isValid())
+    {
+        collisionFreeColour = col;
     }
 }
 
