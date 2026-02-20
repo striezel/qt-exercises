@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     ui->widget->setOther(ui->widgetTwo);
-    // ui->widgetTwo->setOther(ui->widget);
+    ui->widgetTwo->setOther(ui->widget);
 }
 
 MainWindow::~MainWindow()
