@@ -24,6 +24,16 @@
      </rect>
     </property>
    </widget>
+   <widget class="MovableWidget" name="widgetTwo" native="true">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>180</y>
+      <width>150</width>
+      <height>150</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
