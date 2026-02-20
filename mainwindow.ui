@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>W5T5 Übung Widgets und Mausevents</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="MovableWidget" name="widget" native="true">
@@ -19,8 +19,8 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>120</width>
-      <height>80</height>
+      <width>150</width>
+      <height>150</height>
      </rect>
     </property>
    </widget>
