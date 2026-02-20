@@ -34,22 +34,28 @@ void MovableWidget::collisionDetection()
         return;
     }
 
-    const QPoint selfGlobal = this->mapToGlobal(this->geometry().topLeft());
-    const QRect selfGlobalRect = QRect(selfGlobal, this->size());
+    /*qDebug() << "\nGeometry: " << this->geometry();
+    qDebug() << "Rect:     " << this->rect();
+    qDebug() << "Pos:      " << this->pos();*/
 
-    const QPoint otherGlobal = other->mapToGlobal(other->geometry().topLeft());
+    const QPoint selfGlobal = this->mapToGlobal(this->rect().topLeft());
+    const QRect selfGlobalRect = QRect(selfGlobal, this->size());
+    // qDebug() << "Self: " << selfGlobalRect;
+
+    const QPoint otherGlobal = other->mapToGlobal(other->rect().topLeft());
     const QRect otherGlobalRect = QRect(otherGlobal, other->size());
+    // qDebug() << "Other: " << otherGlobalRect;
 
     if (selfGlobalRect.intersects(otherGlobalRect))
     {
-        qDebug() << "Collides!";
+        // qDebug() << "Collides!";
         QPalette palette = this->palette();
         palette.setColor(QPalette::ColorRole::Window, collidingColour);
         this->setPalette(palette);
     }
     else
     {
-        qDebug() << "No collision.";
+        // qDebug() << "No collision.";
         QPalette palette = this->palette();
         palette.setColor(QPalette::ColorRole::Window, collisionFreeColour);
         this->setPalette(palette);
