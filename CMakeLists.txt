@@ -12,6 +12,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
+include_directories(${PROJECT_SOURCE_DIR})
+
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
@@ -23,6 +25,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(W5T5_Uebung_Maus_Dirk
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        movablewidget.h movablewidget.cpp movablewidget.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET W5T5_Uebung_Maus_Dirk APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
