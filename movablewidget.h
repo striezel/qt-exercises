@@ -23,6 +23,9 @@ public:
     void setCollidingColour(const QColor col);
     void setCollisionFreeColour(const QColor col);
 
+    QColor getCollidingColour() const;
+    QColor getCollisionFreeColour() const;
+
     /// colour when widget collides with other widget
     static const QColor defaultCollidingColour;
 

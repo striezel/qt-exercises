@@ -44,8 +44,41 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuDatei">
+    <property name="title">
+     <string>Datei</string>
+    </property>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuChangeColours">
+    <property name="title">
+     <string>Farben ändern</string>
+    </property>
+    <addaction name="actionChangeCollisionColour"/>
+    <addaction name="actionChangeCollisionFreeColour"/>
+   </widget>
+   <addaction name="menuDatei"/>
+   <addaction name="menuChangeColours"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::ApplicationExit"/>
+   </property>
+   <property name="text">
+    <string>Beenden</string>
+   </property>
+  </action>
+  <action name="actionChangeCollisionColour">
+   <property name="text">
+    <string>Farbe bei Kollision ändern ...</string>
+   </property>
+  </action>
+  <action name="actionChangeCollisionFreeColour">
+   <property name="text">
+    <string>Farbe bei Kollisionsfreiheit ändern ...</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

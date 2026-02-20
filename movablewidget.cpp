@@ -45,6 +45,16 @@ void MovableWidget::setCollisionFreeColour(const QColor col)
     }
 }
 
+QColor MovableWidget::getCollidingColour() const
+{
+    return collidingColour;
+}
+
+QColor MovableWidget::getCollisionFreeColour() const
+{
+    return collisionFreeColour;
+}
+
 void MovableWidget::collisionDetection()
 {
     if (other == nullptr)

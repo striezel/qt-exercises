@@ -17,6 +17,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void actionChangeCollisionColourTriggered();
+    void actionChangeCollisionFreeColourTriggered();
+
 private:
     Ui::MainWindow *ui;
 };
