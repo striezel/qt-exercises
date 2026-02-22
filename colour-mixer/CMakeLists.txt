@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(W4T4_Uebung_Farbmischer_Dirk VERSION 0.1 LANGUAGES CXX)
+project(colour_mixer VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -20,37 +20,37 @@ set(PROJECT_SOURCES
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(W4T4_Uebung_Farbmischer_Dirk
+    qt_add_executable(colour_mixer
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
     )
 # Define target properties for Android with Qt 6 as:
-#    set_property(TARGET W4T4_Uebung_Farbmischer_Dirk APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+#    set_property(TARGET colour_mixer APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
 # For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 else()
     if(ANDROID)
-        add_library(W4T4_Uebung_Farbmischer_Dirk SHARED
+        add_library(colour_mixer SHARED
             ${PROJECT_SOURCES}
         )
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
-        add_executable(W4T4_Uebung_Farbmischer_Dirk
+        add_executable(colour_mixer
             ${PROJECT_SOURCES}
         )
     endif()
 endif()
 
-target_link_libraries(W4T4_Uebung_Farbmischer_Dirk PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(colour_mixer PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
 if(${QT_VERSION} VERSION_LESS 6.1.0)
-  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.W4T4_Uebung_Farbmischer_Dirk)
+  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.colour_mixer)
 endif()
-set_target_properties(W4T4_Uebung_Farbmischer_Dirk PROPERTIES
+set_target_properties(colour_mixer PROPERTIES
     ${BUNDLE_ID_OPTION}
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
@@ -59,12 +59,12 @@ set_target_properties(W4T4_Uebung_Farbmischer_Dirk PROPERTIES
 )
 
 include(GNUInstallDirs)
-install(TARGETS W4T4_Uebung_Farbmischer_Dirk
+install(TARGETS colour_mixer
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
 if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(W4T4_Uebung_Farbmischer_Dirk)
+    qt_finalize_executable(colour_mixer)
 endif()
