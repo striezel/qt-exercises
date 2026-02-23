@@ -17,6 +17,8 @@ public:
     explicit TracePainter(QWidget *parent = nullptr);
     ~TracePainter();
 
+    LineTrace& currentTrace();
+
 private:
     Ui::TracePainter *ui;
 

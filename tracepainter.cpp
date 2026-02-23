@@ -16,6 +16,11 @@ TracePainter::~TracePainter()
     delete ui;
 }
 
+LineTrace& TracePainter::currentTrace()
+{
+    return trace;
+}
+
 void TracePainter::mousePressEvent(QMouseEvent* event)
 {
     if ((event->buttons() & Qt::MouseButton::LeftButton) != 0)
@@ -46,6 +51,7 @@ void TracePainter::paintEvent(QPaintEvent *event)
 
     QPainter painter(this);
     painter.setBrush(QBrush(Qt::NoBrush));
+    painter.setPen(trace.getColour());
 
     for (qsizetype i = 1; i < count; i++)
     {

@@ -23,7 +23,34 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuProgramm">
+    <property name="title">
+     <string>Programm</string>
+    </property>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuLinie">
+    <property name="title">
+     <string>Linie</string>
+    </property>
+    <addaction name="actionChangeColour"/>
+   </widget>
+   <addaction name="menuProgramm"/>
+   <addaction name="menuLinie"/>
   </widget>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::ApplicationExit"/>
+   </property>
+   <property name="text">
+    <string>Beenden</string>
+   </property>
+  </action>
+  <action name="actionChangeColour">
+   <property name="text">
+    <string>Farbe ändern ...</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

@@ -17,6 +17,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void actionChangeColourTriggered();
+
 private:
     Ui::MainWindow *ui;
 };
