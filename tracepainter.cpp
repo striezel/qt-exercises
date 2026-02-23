@@ -44,10 +44,12 @@ void TracePainter::mousePressEvent(QMouseEvent* event)
         const QColor previous_colour = traces.isEmpty()
         ? Qt::GlobalColor::black
         : traces.last().getColour();
+        const int previous_width = traces.isEmpty() ? 1 : traces.last().getWidth();
         if (traces.isEmpty() || traces.last().points.count() >= 2)
         {
             LineTrace nextTrace = LineTrace();
             nextTrace.setColour(previous_colour);
+            nextTrace.setWidth(previous_width);
             traces.append(nextTrace);
         }
 
@@ -84,7 +86,10 @@ void TracePainter::paintEvent(QPaintEvent *event)
         }
 
         painter.setBrush(QBrush(Qt::NoBrush));
-        painter.setPen(trace.getColour());
+        QPen pen = QPen();
+        pen.setColor(trace.getColour());
+        pen.setWidth(trace.getWidth());
+        painter.setPen(pen);
 
         for (qsizetype i = 1; i < count; i++)
         {

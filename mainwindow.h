@@ -20,6 +20,7 @@ public:
 private slots:
     void actionChangeLineColourTriggered();
     void actionChangeBackgroundColourTriggered();
+    void actionChangeWidthTriggered();
 
     void actionSaveAsImageTriggered();
 

@@ -21,8 +21,15 @@ public:
 
     /// Gets the trace's current colour.
     QColor getColour() const;
+
+    /// Sets the new line width in pixels.
+    void setWidth(const int new_width);
+
+    /// Gets the current line width in pixels.
+    int getWidth() const;
 private:
     QColor colour;
+    int width;
 };
 
 #endif // LINETRACE_H

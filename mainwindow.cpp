@@ -16,6 +16,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->actionChangeLineColour, &QAction::triggered, this, &MainWindow::actionChangeLineColourTriggered);
     connect(ui->actionChangeBackgroundColour, &QAction::triggered, this, &MainWindow::actionChangeBackgroundColourTriggered);
+
+    connect(ui->actionWidth1px, &QAction::triggered, this, &MainWindow::actionChangeWidthTriggered);
+    connect(ui->actionWidth2px, &QAction::triggered, this, &MainWindow::actionChangeWidthTriggered);
+    connect(ui->actionWidth3px, &QAction::triggered, this, &MainWindow::actionChangeWidthTriggered);
+    connect(ui->actionWidth5px, &QAction::triggered, this, &MainWindow::actionChangeWidthTriggered);
+    connect(ui->actionWidth10px, &QAction::triggered, this, &MainWindow::actionChangeWidthTriggered);
+    connect(ui->actionWidth20px, &QAction::triggered, this, &MainWindow::actionChangeWidthTriggered);
 }
 
 MainWindow::~MainWindow()
@@ -42,6 +49,35 @@ void MainWindow::actionChangeBackgroundColourTriggered()
         this, "Hintergrundfarbe wählen");
 
     ui->paintWidget->setBackgroundColour(new_colour);
+    update();
+}
+
+void MainWindow::actionChangeWidthTriggered()
+{
+    if (sender() == ui->actionWidth1px)
+    {
+        ui->paintWidget->currentTrace().setWidth(1);
+    }
+    else if (sender() == ui->actionWidth2px)
+    {
+        ui->paintWidget->currentTrace().setWidth(2);
+    }
+    else if (sender() == ui->actionWidth3px)
+    {
+        ui->paintWidget->currentTrace().setWidth(3);
+    }
+    else if (sender() == ui->actionWidth5px)
+    {
+        ui->paintWidget->currentTrace().setWidth(5);
+    }
+    else if (sender() == ui->actionWidth10px)
+    {
+        ui->paintWidget->currentTrace().setWidth(10);
+    }
+    else if (sender() == ui->actionWidth20px)
+    {
+        ui->paintWidget->currentTrace().setWidth(20);
+    }
     update();
 }
 
