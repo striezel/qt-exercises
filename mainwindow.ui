@@ -27,6 +27,8 @@
     <property name="title">
      <string>Programm</string>
     </property>
+    <addaction name="actionSaveAsImage"/>
+    <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuLinie">
@@ -49,6 +51,14 @@
   <action name="actionChangeColour">
    <property name="text">
     <string>Farbe ändern ...</string>
+   </property>
+  </action>
+  <action name="actionSaveAsImage">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::DocumentSave"/>
+   </property>
+   <property name="text">
+    <string>Als Bild speichern ...</string>
    </property>
   </action>
  </widget>

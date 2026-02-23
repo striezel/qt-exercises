@@ -19,6 +19,7 @@ public:
 
 private slots:
     void actionChangeColourTriggered();
+    void actionSaveAsImageTriggered();
 
 private:
     Ui::MainWindow *ui;
