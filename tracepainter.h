@@ -1,8 +1,9 @@
 #ifndef TRACEPAINTER_H
 #define TRACEPAINTER_H
 
-#include <QWidget>
+#include <QList>
 #include <QMouseEvent>
+#include <QWidget>
 #include "linetrace.h"
 
 namespace Ui {
@@ -25,7 +26,7 @@ public:
 private:
     Ui::TracePainter *ui;
 
-    LineTrace trace;
+    QList<LineTrace> traces;
     QColor background;
 
     void mousePressEvent(QMouseEvent* event) override;

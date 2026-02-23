@@ -10,6 +10,8 @@ TracePainter::TracePainter(QWidget *parent)
     ui->setupUi(this);
 
     setMouseTracking(true);
+
+    traces.append(LineTrace());
 }
 
 TracePainter::~TracePainter()
@@ -19,7 +21,7 @@ TracePainter::~TracePainter()
 
 LineTrace& TracePainter::currentTrace()
 {
-    return trace;
+    return traces.last();
 }
 
 void TracePainter::setBackgroundColour(const QColor &background)
@@ -39,7 +41,17 @@ void TracePainter::mousePressEvent(QMouseEvent* event)
 {
     if ((event->buttons() & Qt::MouseButton::LeftButton) != 0)
     {
-        trace.add(event->pos());
+        const QColor previous_colour = traces.isEmpty()
+        ? Qt::GlobalColor::black
+        : traces.last().getColour();
+        if (traces.isEmpty() || traces.last().points.count() >= 2)
+        {
+            LineTrace nextTrace = LineTrace();
+            nextTrace.setColour(previous_colour);
+            traces.append(nextTrace);
+        }
+
+        traces.last().add(event->pos());
         update();
     }
 }
@@ -48,7 +60,7 @@ void TracePainter::mouseMoveEvent(QMouseEvent* event)
 {
     if ((event->buttons() & Qt::MouseButton::LeftButton) != 0)
     {
-        trace.add(event->pos());
+        traces.last().add(event->pos());
         update();
     }
 }
@@ -62,19 +74,23 @@ void TracePainter::paintEvent(QPaintEvent *event)
     painter.setBrush(background);
     painter.drawRect(this->rect());
 
-    const qsizetype count = trace.points.count();
-    if (count < 2)
+    for (qsizetype n_trace = 0; n_trace<traces.count(); ++ n_trace)
     {
-        return;
-    }
+        const LineTrace& trace = traces.at(n_trace);
+        const qsizetype count = trace.points.count();
+        if (count < 2)
+        {
+            continue;
+        }
 
-    painter.setBrush(QBrush(Qt::NoBrush));
-    painter.setPen(trace.getColour());
+        painter.setBrush(QBrush(Qt::NoBrush));
+        painter.setPen(trace.getColour());
 
-    for (qsizetype i = 1; i < count; i++)
-    {
-        const QPoint start = trace.points[i - 1];
-        const QPoint end = trace.points[i];
-        painter.drawLine(start, end);
+        for (qsizetype i = 1; i < count; i++)
+        {
+            const QPoint start = trace.points[i - 1];
+            const QPoint end = trace.points[i];
+            painter.drawLine(start, end);
+        }
     }
 }
