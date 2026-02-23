@@ -19,10 +19,14 @@ public:
 
     LineTrace& currentTrace();
 
+    void setBackgroundColour(const QColor& background);
+    QColor getBackgroundColour() const;
+
 private:
     Ui::TracePainter *ui;
 
     LineTrace trace;
+    QColor background;
 
     void mousePressEvent(QMouseEvent* event) override;
     void mouseMoveEvent(QMouseEvent* event) override;

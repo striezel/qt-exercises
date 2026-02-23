@@ -11,9 +11,11 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    connect(ui->actionExit, &QAction::triggered, this, &MainWindow::close);
-    connect(ui->actionChangeColour, &QAction::triggered, this, &MainWindow::actionChangeColourTriggered);
     connect(ui->actionSaveAsImage, &QAction::triggered, this, &MainWindow::actionSaveAsImageTriggered);
+    connect(ui->actionExit, &QAction::triggered, this, &MainWindow::close);
+
+    connect(ui->actionChangeLineColour, &QAction::triggered, this, &MainWindow::actionChangeLineColourTriggered);
+    connect(ui->actionChangeBackgroundColour, &QAction::triggered, this, &MainWindow::actionChangeBackgroundColourTriggered);
 }
 
 MainWindow::~MainWindow()
@@ -21,7 +23,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::actionChangeColourTriggered()
+void MainWindow::actionChangeLineColourTriggered()
 {
     const QColor new_colour = QColorDialog::getColor(
         ui->paintWidget->currentTrace().getColour(),
@@ -30,6 +32,16 @@ void MainWindow::actionChangeColourTriggered()
         );
 
     ui->paintWidget->currentTrace().setColour(new_colour);
+    update();
+}
+
+void MainWindow::actionChangeBackgroundColourTriggered()
+{
+    const QColor new_colour = QColorDialog::getColor(
+        ui->paintWidget->getBackgroundColour(),
+        this, "Hintergrundfarbe wählen");
+
+    ui->paintWidget->setBackgroundColour(new_colour);
     update();
 }
 

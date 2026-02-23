@@ -18,7 +18,9 @@ public:
     ~MainWindow();
 
 private slots:
-    void actionChangeColourTriggered();
+    void actionChangeLineColourTriggered();
+    void actionChangeBackgroundColourTriggered();
+
     void actionSaveAsImageTriggered();
 
 private:

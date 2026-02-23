@@ -35,7 +35,8 @@
     <property name="title">
      <string>Linie</string>
     </property>
-    <addaction name="actionChangeColour"/>
+    <addaction name="actionChangeLineColour"/>
+    <addaction name="actionChangeBackgroundColour"/>
    </widget>
    <addaction name="menuProgramm"/>
    <addaction name="menuLinie"/>
@@ -48,9 +49,9 @@
     <string>Beenden</string>
    </property>
   </action>
-  <action name="actionChangeColour">
+  <action name="actionChangeLineColour">
    <property name="text">
-    <string>Farbe ändern ...</string>
+    <string>Linienfarbe ändern ...</string>
    </property>
   </action>
   <action name="actionSaveAsImage">
@@ -59,6 +60,11 @@
    </property>
    <property name="text">
     <string>Als Bild speichern ...</string>
+   </property>
+  </action>
+  <action name="actionChangeBackgroundColour">
+   <property name="text">
+    <string>Hintergrundfarbe ändern ...</string>
    </property>
   </action>
  </widget>

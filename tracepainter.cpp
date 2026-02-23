@@ -5,6 +5,7 @@
 TracePainter::TracePainter(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::TracePainter)
+    , background(Qt::white)
 {
     ui->setupUi(this);
 
@@ -19,6 +20,19 @@ TracePainter::~TracePainter()
 LineTrace& TracePainter::currentTrace()
 {
     return trace;
+}
+
+void TracePainter::setBackgroundColour(const QColor &background)
+{
+    if (background.isValid())
+    {
+        this->background = background;
+    }
+}
+
+QColor TracePainter::getBackgroundColour() const
+{
+    return background;
 }
 
 void TracePainter::mousePressEvent(QMouseEvent* event)
@@ -43,13 +57,17 @@ void TracePainter::paintEvent(QPaintEvent *event)
 {
     this->QWidget::paintEvent(event);
 
+    QPainter painter(this);
+    painter.setPen(QPen(Qt::PenStyle::NoPen));
+    painter.setBrush(background);
+    painter.drawRect(this->rect());
+
     const qsizetype count = trace.points.count();
     if (count < 2)
     {
         return;
     }
 
-    QPainter painter(this);
     painter.setBrush(QBrush(Qt::NoBrush));
     painter.setPen(trace.getColour());
 
