@@ -23,6 +23,8 @@ public:
     void setBackgroundColour(const QColor& background);
     QColor getBackgroundColour() const;
 
+    /// Clears existing line traces.
+    void clearTraces();
 private:
     Ui::TracePainter *ui;
 

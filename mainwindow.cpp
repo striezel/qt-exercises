@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     connect(ui->actionSaveAsImage, &QAction::triggered, this, &MainWindow::actionSaveAsImageTriggered);
+    connect(ui->actionDeleteDrawing, &QAction::triggered, this, &MainWindow::actionDeleteDrawingTriggered);
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::close);
 
     connect(ui->actionChangeLineColour, &QAction::triggered, this, &MainWindow::actionChangeLineColourTriggered);
@@ -110,5 +111,18 @@ void MainWindow::actionSaveAsImageTriggered()
         QMessageBox::warning(
             this, "Speichern fehlgeschlagen",
             "Das Gemälde konnte nicht unter " + imageFileName + " gespeichert werden.");
+    }
+}
+
+void MainWindow::actionDeleteDrawingTriggered()
+{
+    const int button = QMessageBox::question(
+        this, "Zeichnung wirklich löschen?",
+        "Soll die aktuelle Zeichnung wirklich gelöscht werden?",
+        QMessageBox::StandardButton::Yes, QMessageBox::StandardButton::No);
+
+    if (button== QMessageBox::StandardButton::Yes)
+    {
+        ui->paintWidget->clearTraces();
     }
 }

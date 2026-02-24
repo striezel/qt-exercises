@@ -37,6 +37,20 @@ QColor TracePainter::getBackgroundColour() const
     return background;
 }
 
+void TracePainter::clearTraces()
+{
+    // Remove all but the latest trace, because latest trace contains current
+    // line colour and line width and we want to keep that.
+    while (traces.count() > 1)
+    {
+        traces.pop_front();
+    }
+
+    // Clear all points from last trace.
+    traces.last().clear();
+    update();
+}
+
 void TracePainter::mousePressEvent(QMouseEvent* event)
 {
     if ((event->buttons() & Qt::MouseButton::LeftButton) != 0)

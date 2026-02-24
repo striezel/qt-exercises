@@ -24,6 +24,7 @@ private slots:
     void actionChangeWidthTriggered();
 
     void actionSaveAsImageTriggered();
+    void actionDeleteDrawingTriggered();
 
 private:
     Ui::MainWindow *ui;

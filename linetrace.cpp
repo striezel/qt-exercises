@@ -37,3 +37,8 @@ int LineTrace::getWidth() const
 {
     return width;
 }
+
+void LineTrace::clear()
+{
+    points.clear();
+}

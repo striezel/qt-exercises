@@ -27,6 +27,9 @@ public:
 
     /// Gets the current line width in pixels.
     int getWidth() const;
+
+    /// Removes all points from the trace.
+    void clear();
 private:
     QColor colour;
     int width;

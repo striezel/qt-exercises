@@ -28,6 +28,7 @@
      <string>Programm</string>
     </property>
     <addaction name="actionSaveAsImage"/>
+    <addaction name="actionDeleteDrawing"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -128,6 +129,14 @@
    </property>
    <property name="text">
     <string>20 Pixel</string>
+   </property>
+  </action>
+  <action name="actionDeleteDrawing">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::EditDelete"/>
+   </property>
+   <property name="text">
+    <string>Zeichnung löschen</string>
    </property>
   </action>
  </widget>
