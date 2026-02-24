@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
+#include <QDebug>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QtSql/QSqlDatabase>
