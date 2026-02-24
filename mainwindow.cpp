@@ -23,10 +23,19 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionWidth5px, &QAction::triggered, this, &MainWindow::actionChangeWidthTriggered);
     connect(ui->actionWidth10px, &QAction::triggered, this, &MainWindow::actionChangeWidthTriggered);
     connect(ui->actionWidth20px, &QAction::triggered, this, &MainWindow::actionChangeWidthTriggered);
+
+    widthActionGroup = new QActionGroup(this);
+    widthActionGroup->addAction(ui->actionWidth1px);
+    widthActionGroup->addAction(ui->actionWidth2px);
+    widthActionGroup->addAction(ui->actionWidth3px);
+    widthActionGroup->addAction(ui->actionWidth5px);
+    widthActionGroup->addAction(ui->actionWidth10px);
+    widthActionGroup->addAction(ui->actionWidth20px);
 }
 
 MainWindow::~MainWindow()
 {
+    delete widthActionGroup;
     delete ui;
 }
 

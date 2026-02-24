@@ -80,31 +80,52 @@
    </property>
   </action>
   <action name="actionWidth1px">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>1 Pixel</string>
    </property>
   </action>
   <action name="actionWidth2px">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>2 Pixel</string>
    </property>
   </action>
   <action name="actionWidth3px">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>3 Pixel</string>
    </property>
   </action>
   <action name="actionWidth5px">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>5 Pixel</string>
    </property>
   </action>
   <action name="actionWidth10px">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>10 Pixel</string>
    </property>
   </action>
   <action name="actionWidth20px">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>20 Pixel</string>
    </property>
