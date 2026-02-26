@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QThread>
 #include "movingwidget.h"
 
 QT_BEGIN_NAMESPACE
@@ -26,5 +27,8 @@ private:
     MovingWidget* widgetOne;
     MovingWidget* widgetTwo;
     void btnMoveClicked();
+
+    QThread threadOne;
+    QThread threadTwo;
 };
 #endif // MAINWINDOW_H

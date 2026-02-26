@@ -20,6 +20,17 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    if (threadOne.isRunning())
+    {
+        threadOne.quit();
+        threadOne.wait();
+    }
+    if (threadTwo.isRunning())
+    {
+        threadTwo.quit();
+        threadTwo.wait();
+    }
+
     delete ui;
 }
 
