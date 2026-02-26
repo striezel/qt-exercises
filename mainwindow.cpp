@@ -6,9 +6,25 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    widgetOne = new MovingWidget(ui->centralwidget);
+    widgetOne->setEdge(Qt::TopEdge);
+    widgetOne->setDirection(MovingWidget::Direction::Clockwise);
+
+    widgetTwo = new MovingWidget(ui->centralwidget);
+    widgetTwo->setEdge(Qt::BottomEdge);
+    widgetTwo->setDirection(MovingWidget::Direction::CounterClockwise);
+
+    connect(ui->btnMove, &QPushButton::clicked, this, &MainWindow::btnMoveClicked);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::btnMoveClicked()
+{
+    widgetOne->moveOneStep();
+    widgetTwo->moveOneStep();
 }

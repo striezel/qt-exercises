@@ -27,6 +27,8 @@ public:
     Direction getDirection() const;
     void setDirection(const Direction dir);
 
+    void moveOneStep();
+
 private:
     Ui::MovingWidget *ui;
 

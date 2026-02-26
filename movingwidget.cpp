@@ -1,6 +1,8 @@
 #include "movingwidget.h"
 #include "ui_movingwidget.h"
 
+#include <QDebug>
+
 MovingWidget::MovingWidget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::MovingWidget)
@@ -33,6 +35,38 @@ void MovingWidget::setDirection(const Direction dir)
     direction = dir;
 }
 
+void MovingWidget::moveOneStep()
+{
+    const QWidget* parentW = this->parentWidget();
+    if (parentW == nullptr)
+    {
+        return;
+    }
+
+    QPoint newPos = pos();
+    switch (edge)
+    {
+    case Qt::Edge::TopEdge:
+        newPos.setX(newPos.x() + (direction == Direction::Clockwise)
+                    - (direction == Direction::CounterClockwise));
+        break;
+    case Qt::Edge::LeftEdge:
+        newPos.setY(newPos.y() - (direction == Direction::Clockwise)
+                    + (direction == Direction::CounterClockwise));
+        break;
+    case Qt::Edge::RightEdge:
+        newPos.setY(newPos.y() + (direction == Direction::Clockwise)
+                    - (direction == Direction::CounterClockwise));
+        break;
+    case Qt::Edge::BottomEdge:
+        newPos.setX(newPos.x() - (direction == Direction::Clockwise)
+                    + (direction == Direction::CounterClockwise));
+        break;
+    }
+
+    this->move(newPos);
+}
+
 void MovingWidget::adjustPosition()
 {
     const QWidget* parentW = this->parentWidget();
@@ -60,6 +94,8 @@ void MovingWidget::adjustPosition()
         this->move(pos().x(), parentW->rect().height() - this->rect().height());
         break;
     }
+
+    qDebug() << "Position: " << pos().x() << "," << pos().y();
 }
 
 MovingWidget::Direction MovingWidget::getDirection() const
