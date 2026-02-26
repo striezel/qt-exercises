@@ -23,6 +23,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(W6T4_Uebung_Threads_Dirk
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        movingwidget.h movingwidget.cpp movingwidget.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET W6T4_Uebung_Threads_Dirk APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
