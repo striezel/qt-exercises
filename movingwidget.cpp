@@ -126,6 +126,8 @@ void MovingWidget::adjustPosition()
         {
             return;
         }
+        qDebug() << "Parent.rect(): " << parentW->rect();
+        qDebug() << "self.rect()  : " << this->rect();
         this->move(pos().x(), parentW->rect().height() - this->rect().height());
         break;
     }
