@@ -47,20 +47,55 @@ void MovingWidget::moveOneStep()
     switch (edge)
     {
     case Qt::Edge::TopEdge:
+        // Adjust position.
         newPos.setX(newPos.x() + (direction == Direction::Clockwise)
                     - (direction == Direction::CounterClockwise));
+        // Change direction, if we met the end of the edge.
+        if ((direction == Direction::CounterClockwise) && (newPos.x() <= 0))
+        {
+            edge = Qt::Edge::LeftEdge;
+        }
+        else if ((direction == Direction::Clockwise) && (newPos.x() >= parentW->rect().width() - this->rect().width()))
+        {
+            edge = Qt::Edge::RightEdge;
+        }
         break;
     case Qt::Edge::LeftEdge:
         newPos.setY(newPos.y() - (direction == Direction::Clockwise)
                     + (direction == Direction::CounterClockwise));
+        if ((direction == Direction::Clockwise) && (newPos.y() <= 0))
+        {
+            edge = Qt::Edge::TopEdge;
+        }
+        else if ((direction == Direction::CounterClockwise) && (newPos.y() >= parentW->rect().height() - this->rect().height()))
+        {
+            edge = Qt::Edge::BottomEdge;
+        }
         break;
     case Qt::Edge::RightEdge:
         newPos.setY(newPos.y() + (direction == Direction::Clockwise)
                     - (direction == Direction::CounterClockwise));
+        if ((direction == Direction::CounterClockwise) && (newPos.y() <= 0))
+        {
+            edge = Qt::Edge::TopEdge;
+        }
+        else if ((direction == Direction::Clockwise) && (newPos.y() >= parentW->rect().height() - this->rect().height()))
+        {
+            edge = Qt::Edge::BottomEdge;
+        }
         break;
     case Qt::Edge::BottomEdge:
         newPos.setX(newPos.x() - (direction == Direction::Clockwise)
                     + (direction == Direction::CounterClockwise));
+        // Change direction, if we met the end of the edge.
+        if ((direction == Direction::Clockwise) && (newPos.x() <= 0))
+        {
+            edge = Qt::Edge::LeftEdge;
+        }
+        else if ((direction == Direction::CounterClockwise) && (newPos.x() >= parentW->rect().width() - this->rect().width()))
+        {
+            edge = Qt::Edge::RightEdge;
+        }
         break;
     }
 

@@ -25,6 +25,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::btnMoveClicked()
 {
-    widgetOne->moveOneStep();
-    widgetTwo->moveOneStep();
+    for (int i = 0; i < 5; ++ i)
+    {
+        widgetOne->moveOneStep();
+        widgetTwo->moveOneStep();
+    }
 }
