@@ -8,6 +8,9 @@ created to learn how to work with Qt.
 
 # Applications
 
+* **colliding-widgets** - application where two widgets can be moved via mouse
+  and change colour when they collide / overlap
+
 * **colour-mixer** - application that allows to "mix" an RGB colour via three
  sliders
 
