@@ -14,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionStopMovement, &QAction::triggered, this, &MainWindow::stopMovement);
     connect(ui->actionChangeColourWidgetOne, &QAction::triggered, this, &MainWindow::changeColourWidgetOne);
     connect(ui->actionChangeColourWidgetTwo, &QAction::triggered, this, &MainWindow::changeColourWidgetTwo);
+    connect(ui->actionSlowDown, &QAction::triggered, this, &MainWindow::actionSlowDownTriggered);
+    connect(ui->actionSpeedUp, &QAction::triggered, this, &MainWindow::actionSpeedUpTriggered);
 
     widgetOne = new MovingWidget(ui->centralwidget);
     widgetOne->setEdge(Qt::TopEdge);
@@ -106,4 +108,34 @@ void MainWindow::changeColourWidgetTwo()
     const QColor newColour = QColorDialog::getColor(widgetTwo->getColour(),
                                                     this, "Farbe des zweiten Widgets wählen");
     widgetTwo->setColour(newColour);
+}
+
+void MainWindow::actionSlowDownTriggered()
+{
+    int current_interval = timer.interval();
+    if (current_interval < 150)
+    {
+        current_interval += 5;
+        timer.setInterval(current_interval);
+        statusBar()->showMessage("Neues Intervall: " + QString::number(current_interval) + " ms", 5000);
+    }
+    else
+    {
+        statusBar()->showMessage("Geschwindigkeit ist schon beim Minimum.", 5000);
+    }
+}
+
+void MainWindow::actionSpeedUpTriggered()
+{
+    int current_interval = timer.interval();
+    if (current_interval > 5)
+    {
+        current_interval -= 5;
+        timer.setInterval(current_interval);
+        statusBar()->showMessage("Neues Intervall: " + QString::number(current_interval) + " ms", 5000);
+    }
+    else
+    {
+        statusBar()->showMessage("Geschwindigkeit ist schon beim Maximum.", 5000);
+    }
 }

@@ -38,6 +38,9 @@
     </property>
     <addaction name="actionStartMovement"/>
     <addaction name="actionStopMovement"/>
+    <addaction name="separator"/>
+    <addaction name="actionSpeedUp"/>
+    <addaction name="actionSlowDown"/>
    </widget>
    <widget class="QMenu" name="menuColours">
     <property name="title">
@@ -50,6 +53,7 @@
    <addaction name="menuMovement"/>
    <addaction name="menuColours"/>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <action name="actionStartMovement">
    <property name="icon">
     <iconset theme="QIcon::ThemeIcon::MediaPlaybackStart"/>
@@ -82,6 +86,22 @@
   <action name="actionChangeColourWidgetTwo">
    <property name="text">
     <string>Farbe des zweiten Widgets ändern</string>
+   </property>
+  </action>
+  <action name="actionSpeedUp">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::MediaSeekForward"/>
+   </property>
+   <property name="text">
+    <string>Geschwindigkeit erhöhen</string>
+   </property>
+  </action>
+  <action name="actionSlowDown">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::MediaSeekBackward"/>
+   </property>
+   <property name="text">
+    <string>Geschwindigkeit verringern</string>
    </property>
   </action>
  </widget>

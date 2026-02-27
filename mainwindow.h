@@ -36,6 +36,9 @@ private slots:
     void changeColourWidgetOne();
     void changeColourWidgetTwo();
 
+    void actionSlowDownTriggered();
+    void actionSpeedUpTriggered();
+
 private:
     Ui::MainWindow *ui;
 
