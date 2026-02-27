@@ -29,6 +29,10 @@ signals:
 protected:
     void resizeEvent(QResizeEvent *event);
 
+private slots:
+    void startMovement();
+    void stopMovement();
+
 private:
     Ui::MainWindow *ui;
 

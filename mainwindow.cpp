@@ -7,6 +7,10 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    connect(ui->actionExit, &QAction::triggered, this, &MainWindow::close);
+    connect(ui->actionStartMovement, &QAction::triggered, this, &MainWindow::startMovement);
+    connect(ui->actionStopMovement, &QAction::triggered, this, &MainWindow::stopMovement);
+
     widgetOne = new MovingWidget(ui->centralwidget);
     widgetOne->setEdge(Qt::TopEdge);
     widgetOne->setDirection(MovingWidget::Direction::Clockwise);
@@ -72,4 +76,14 @@ void MainWindow::resizeEvent(QResizeEvent *event)
         widgetOne->setEdge(widgetOne->getEdge());
         widgetTwo->setEdge(widgetTwo->getEdge());
     }
+}
+
+void MainWindow::startMovement()
+{
+    timer.start();
+}
+
+void MainWindow::stopMovement()
+{
+    timer.stop();
 }
