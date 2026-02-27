@@ -1,7 +1,15 @@
 #include "stepworker.h"
 
-StepWorker::StepWorker(QObject* parent)
+StepWorker::StepWorker(MovingWidget* widget, QObject* parent)
     : QObject(parent)
+    , widget(widget)
 {
-    timer.setInterval(250);
+}
+
+void StepWorker::moveIt()
+{
+    if (widget != nullptr)
+    {
+        widget->moveOneStep();
+    }
 }

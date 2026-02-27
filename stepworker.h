@@ -2,16 +2,19 @@
 #define STEPWORKER_H
 
 #include <QObject>
-#include <QTimer>
+#include "movingwidget.h"
 
 class StepWorker: public QObject
 {
     Q_OBJECT
 public:
-    StepWorker(QObject* parent = nullptr);
+    StepWorker(MovingWidget* widget, QObject* parent = nullptr);
+
+public slots:
+    void moveIt();
 
 private:
-    QTimer timer;
+    MovingWidget* widget;
 };
 
 #endif // STEPWORKER_H

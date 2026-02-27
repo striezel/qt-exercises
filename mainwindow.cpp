@@ -16,6 +16,21 @@ MainWindow::MainWindow(QWidget *parent)
     widgetTwo->setDirection(MovingWidget::Direction::CounterClockwise);
 
     connect(ui->btnMove, &QPushButton::clicked, this, &MainWindow::btnMoveClicked);
+
+    timer.setInterval(25);
+
+    workerOne = new StepWorker(widgetOne, this);
+    workerTwo = new StepWorker(widgetTwo, this);
+
+    workerOne->moveToThread(&threadOne);
+    workerTwo->moveToThread(&threadTwo);
+
+    connect(&timer, &QTimer::timeout, this, [this] {
+        emit doTheNextMove();
+    });
+
+    connect(this, &MainWindow::doTheNextMove, workerOne, &StepWorker::moveIt);
+    connect(this, &MainWindow::doTheNextMove, workerTwo, &StepWorker::moveIt);
 }
 
 MainWindow::~MainWindow()
@@ -31,6 +46,9 @@ MainWindow::~MainWindow()
         threadTwo.wait();
     }
 
+    delete workerOne;
+    delete workerTwo;
+
     delete ui;
 }
 
@@ -44,6 +62,9 @@ void MainWindow::showEvent(QShowEvent *event)
         widgetOne->setEdge(widgetOne->getEdge());
         widgetTwo->setEdge(widgetTwo->getEdge());
     }
+
+    // start the timer
+    timer.start();
 }
 
 void MainWindow::btnMoveClicked()

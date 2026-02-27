@@ -3,7 +3,9 @@
 
 #include <QMainWindow>
 #include <QThread>
+#include <QTimer>
 #include "movingwidget.h"
+#include "stepworker.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,6 +23,9 @@ public:
 
     void showEvent(QShowEvent* event) override;
 
+signals:
+    void doTheNextMove();
+
 private:
     Ui::MainWindow *ui;
 
@@ -30,5 +35,10 @@ private:
 
     QThread threadOne;
     QThread threadTwo;
+
+    StepWorker* workerOne = nullptr;
+    StepWorker* workerTwo = nullptr;
+
+    QTimer timer;
 };
 #endif // MAINWINDOW_H
