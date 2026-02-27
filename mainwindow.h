@@ -26,12 +26,14 @@ public:
 signals:
     void doTheNextMove();
 
+protected:
+    void resizeEvent(QResizeEvent *event);
+
 private:
     Ui::MainWindow *ui;
 
     MovingWidget* widgetOne;
     MovingWidget* widgetTwo;
-    void btnMoveClicked();
 
     QThread threadOne;
     QThread threadTwo;

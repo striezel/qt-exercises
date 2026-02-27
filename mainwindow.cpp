@@ -15,8 +15,6 @@ MainWindow::MainWindow(QWidget *parent)
     widgetTwo->setEdge(Qt::BottomEdge);
     widgetTwo->setDirection(MovingWidget::Direction::CounterClockwise);
 
-    connect(ui->btnMove, &QPushButton::clicked, this, &MainWindow::btnMoveClicked);
-
     timer.setInterval(25);
 
     workerOne = new StepWorker(widgetOne, this);
@@ -67,11 +65,11 @@ void MainWindow::showEvent(QShowEvent *event)
     timer.start();
 }
 
-void MainWindow::btnMoveClicked()
+void MainWindow::resizeEvent(QResizeEvent *event)
 {
-    for (int i = 0; i < 5; ++ i)
+    if (widgetOne != nullptr)
     {
-        widgetOne->moveOneStep();
-        widgetTwo->moveOneStep();
+        widgetOne->setEdge(widgetOne->getEdge());
+        widgetTwo->setEdge(widgetTwo->getEdge());
     }
 }
