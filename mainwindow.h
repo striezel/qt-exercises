@@ -33,6 +33,9 @@ private slots:
     void startMovement();
     void stopMovement();
 
+    void changeColourWidgetOne();
+    void changeColourWidgetTwo();
+
 private:
     Ui::MainWindow *ui;
 

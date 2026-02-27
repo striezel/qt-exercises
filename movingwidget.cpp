@@ -8,6 +8,7 @@ MovingWidget::MovingWidget(QWidget *parent)
     , ui(new Ui::MovingWidget)
     , edge(Qt::TopEdge)
     , direction(Direction::Clockwise)
+    , colour(QColor(255, 127, 0))
 {
     ui->setupUi(this);
 
@@ -33,6 +34,22 @@ void MovingWidget::setEdge(const Qt::Edge edge)
 void MovingWidget::setDirection(const Direction dir)
 {
     direction = dir;
+}
+
+QColor MovingWidget::getColour() const
+{
+    return colour;
+}
+
+void MovingWidget::setColour(const QColor &colour)
+{
+    if (colour.isValid())
+    {
+        this->colour = colour;
+        QPalette palette = this->palette();
+        palette.setColor(QPalette::ColorRole::Window, colour);
+        this->setPalette(palette);
+    }
 }
 
 void MovingWidget::moveOneStep()

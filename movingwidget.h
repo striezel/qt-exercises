@@ -27,6 +27,9 @@ public:
     Direction getDirection() const;
     void setDirection(const Direction dir);
 
+    QColor getColour() const;
+    void setColour(const QColor& colour);
+
     void moveOneStep();
 
 private:
@@ -34,6 +37,7 @@ private:
 
     Qt::Edge edge;
     Direction direction;
+    QColor colour;
 
     void adjustPosition();
 };
