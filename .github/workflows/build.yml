@@ -25,7 +25,7 @@ jobs:
         run: |
           export CXX=g++-${{ matrix.version }}
           export CC=gcc-${{ matrix.version }}
-          cd $GITHUB_WORKSPACE/colour-mixer
+          cd $GITHUB_WORKSPACE
           mkdir build
           cd build
           cmake ../
