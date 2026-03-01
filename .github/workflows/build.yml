@@ -30,3 +30,31 @@ jobs:
           cd build
           cmake ../
           make -j2
+
+  clang:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - version: 18
+            os: ubuntu-24.04
+    runs-on: ${{ matrix.os }}
+    steps:
+      # Checks-out the repository under $GITHUB_WORKSPACE.
+      - name: Git checkout
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Install Debian packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake clang-${{ matrix.version }} qt6-base-dev
+      - name: Build with Clang ${{ matrix.version }} on ${{ matrix.os }}
+        run: |
+          export CXX=clang++-${{ matrix.version }}
+          export CC=clang-${{ matrix.version }}
+          cd $GITHUB_WORKSPACE
+          mkdir build
+          cd build
+          cmake ../
+          make -j2
