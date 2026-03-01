@@ -1,0 +1,32 @@
+name: Ubuntu
+
+on: push
+
+jobs:
+  gcc:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - version: 13
+            os: ubuntu-24.04
+    runs-on: ${{ matrix.os }}
+    steps:
+      # Checks-out the repository under $GITHUB_WORKSPACE.
+      - name: Git checkout
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Install Debian packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake g++-${{ matrix.version }} qt6-base-dev
+      - name: Build with GNU GCC ${{ matrix.version }} on ${{ matrix.os }}
+        run: |
+          export CXX=g++-${{ matrix.version }}
+          export CC=gcc-${{ matrix.version }}
+          cd $GITHUB_WORKSPACE/colour-mixer
+          mkdir build
+          cd build
+          cmake ../
+          make -j2
