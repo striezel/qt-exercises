@@ -14,6 +14,9 @@ created to learn how to work with Qt.
 * **colour-mixer** - application that allows to "mix" an RGB colour via three
  sliders
 
+* **line-painter** - a simple drawing application that can be used to draw lines
+  inside the application window
+
 * **table-viewer** - application to view contents of SQLite databases
 
 # License and copyright
