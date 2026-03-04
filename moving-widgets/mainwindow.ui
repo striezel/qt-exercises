@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>341</width>
+    <height>364</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Gegenläufige Quadrate</string>
+  </property>
+  <property name="windowIcon">
+   <iconset theme="object-rotate-left"/>
+  </property>
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>341</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuProgram">
+    <property name="title">
+     <string>Programm</string>
+    </property>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuMovement">
+    <property name="title">
+     <string>Bewegung</string>
+    </property>
+    <addaction name="actionStartMovement"/>
+    <addaction name="actionStopMovement"/>
+    <addaction name="separator"/>
+    <addaction name="actionSpeedUp"/>
+    <addaction name="actionSlowDown"/>
+   </widget>
+   <widget class="QMenu" name="menuColours">
+    <property name="title">
+     <string>Farben</string>
+    </property>
+    <addaction name="actionChangeColourWidgetOne"/>
+    <addaction name="actionChangeColourWidgetTwo"/>
+   </widget>
+   <addaction name="menuProgram"/>
+   <addaction name="menuMovement"/>
+   <addaction name="menuColours"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionStartMovement">
+   <property name="icon">
+    <iconset theme="media-playback-start"/>
+   </property>
+   <property name="text">
+    <string>Bewegung starten</string>
+   </property>
+  </action>
+  <action name="actionStopMovement">
+   <property name="icon">
+    <iconset theme="media-playback-stop"/>
+   </property>
+   <property name="text">
+    <string>Bewegung anhalten</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset theme="application-exit"/>
+   </property>
+   <property name="text">
+    <string>Beenden</string>
+   </property>
+  </action>
+  <action name="actionChangeColourWidgetOne">
+   <property name="text">
+    <string>Farbe des ersten Widgets ändern</string>
+   </property>
+  </action>
+  <action name="actionChangeColourWidgetTwo">
+   <property name="text">
+    <string>Farbe des zweiten Widgets ändern</string>
+   </property>
+  </action>
+  <action name="actionSpeedUp">
+   <property name="icon">
+    <iconset theme="media-seek-forward"/>
+   </property>
+   <property name="text">
+    <string>Geschwindigkeit erhöhen</string>
+   </property>
+  </action>
+  <action name="actionSlowDown">
+   <property name="icon">
+    <iconset theme="media-seek-backward"/>
+   </property>
+   <property name="text">
+    <string>Geschwindigkeit verringern</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
