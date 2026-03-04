@@ -17,6 +17,9 @@ created to learn how to work with Qt.
 * **line-painter** - a simple drawing application that can be used to draw lines
   inside the application window
 
+* **moving-widgets** - application where two widgets move along the edge of the
+  application window in opposite directions
+
 * **table-viewer** - application to view contents of SQLite databases
 
 # License and copyright
