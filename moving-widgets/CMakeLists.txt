@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(W6T4_Uebung_Threads_Dirk VERSION 0.1 LANGUAGES CXX)
+project(moving-widgets VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -21,40 +21,40 @@ set(PROJECT_SOURCES
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(W6T4_Uebung_Threads_Dirk
+    qt_add_executable(moving-widgets
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         movingwidget.h movingwidget.cpp movingwidget.ui
         stepworker.h stepworker.cpp
     )
 # Define target properties for Android with Qt 6 as:
-#    set_property(TARGET W6T4_Uebung_Threads_Dirk APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+#    set_property(TARGET moving-widgets APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
 # For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 else()
     if(ANDROID)
-        add_library(W6T4_Uebung_Threads_Dirk SHARED
+        add_library(moving-widgets SHARED
             ${PROJECT_SOURCES}
         )
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
-        add_executable(W6T4_Uebung_Threads_Dirk
+        add_executable(moving-widgets
             ${PROJECT_SOURCES}
         )
     endif()
 endif()
 
-target_link_libraries(W6T4_Uebung_Threads_Dirk PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-target_link_libraries(W6T4_Uebung_Threads_Dirk PRIVATE Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(moving-widgets PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(moving-widgets PRIVATE Qt${QT_VERSION_MAJOR}::Core)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
 if(${QT_VERSION} VERSION_LESS 6.1.0)
-  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.W6T4_Uebung_Threads_Dirk)
+  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.moving-widgets)
 endif()
-set_target_properties(W6T4_Uebung_Threads_Dirk PROPERTIES
+set_target_properties(moving-widgets PROPERTIES
     ${BUNDLE_ID_OPTION}
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
@@ -63,12 +63,12 @@ set_target_properties(W6T4_Uebung_Threads_Dirk PROPERTIES
 )
 
 include(GNUInstallDirs)
-install(TARGETS W6T4_Uebung_Threads_Dirk
+install(TARGETS moving-widgets
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
 if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(W6T4_Uebung_Threads_Dirk)
+    qt_finalize_executable(moving-widgets)
 endif()
