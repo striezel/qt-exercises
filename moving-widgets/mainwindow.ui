@@ -56,7 +56,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionStartMovement">
    <property name="icon">
-    <iconset theme="QIcon::ThemeIcon::MediaPlaybackStart"/>
+    <iconset theme="media-playback-start"/>
    </property>
    <property name="text">
     <string>Bewegung starten</string>
@@ -64,7 +64,7 @@
   </action>
   <action name="actionStopMovement">
    <property name="icon">
-    <iconset theme="QIcon::ThemeIcon::MediaPlaybackStop"/>
+    <iconset theme="media-playback-stop"/>
    </property>
    <property name="text">
     <string>Bewegung anhalten</string>
@@ -72,7 +72,7 @@
   </action>
   <action name="actionExit">
    <property name="icon">
-    <iconset theme="QIcon::ThemeIcon::ApplicationExit"/>
+    <iconset theme="application-exit"/>
    </property>
    <property name="text">
     <string>Beenden</string>
@@ -90,7 +90,7 @@
   </action>
   <action name="actionSpeedUp">
    <property name="icon">
-    <iconset theme="QIcon::ThemeIcon::MediaSeekForward"/>
+    <iconset theme="media-seek-forward"/>
    </property>
    <property name="text">
     <string>Geschwindigkeit erhöhen</string>
@@ -98,7 +98,7 @@
   </action>
   <action name="actionSlowDown">
    <property name="icon">
-    <iconset theme="QIcon::ThemeIcon::MediaSeekBackward"/>
+    <iconset theme="media-seek-backward"/>
    </property>
    <property name="text">
     <string>Geschwindigkeit verringern</string>
