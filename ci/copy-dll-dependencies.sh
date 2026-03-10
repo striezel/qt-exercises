@@ -2,7 +2,7 @@
 
 # Utility script to copy DLL files required by a binary.
 #
-# Copyright (C) 2022  Dirk Stolle
+# Copyright (C) 2022, 2026  Dirk Stolle
 #
 # License: GNU GPL 3+
 
@@ -39,12 +39,19 @@ do
   fi
 done
 
-echo "Copying executable $EXECUTABLE to $OUTPUT ..."
-cp "$EXECUTABLE" "$OUTPUT"
-if [ $? -ne 0 ]
+real_exe=$(realpath "$EXECUTABLE")
+dest_exe=$(realpath "$OUTPUT"/$(basename "$EXECUTABLE"))
+if [ "$real_exe" != "$dest_exe" ]
 then
-  echo "Error: Copying of executable $EXECUTABLE failed!"
-  exit 3
+  echo "Copying executable $EXECUTABLE to $OUTPUT ..."
+  cp "$EXECUTABLE" "$OUTPUT"
+  if [ $? -ne 0 ]
+  then
+    echo "Error: Copying of executable $EXECUTABLE failed!"
+    exit 3
+  fi
+else
+  echo "Skipping copy of $EXECUTABLE to $OUTPUT, because it's the same file."
 fi
 
 exit 0
