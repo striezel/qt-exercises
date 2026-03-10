@@ -8,6 +8,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - version: 11
+            os: ubuntu-22.04
           - version: 13
             os: ubuntu-24.04
     runs-on: ${{ matrix.os }}
@@ -20,7 +22,7 @@ jobs:
       - name: Install Debian packages
         run: |
           sudo apt-get update
-          sudo apt-get install -y cmake g++-${{ matrix.version }} qt6-base-dev
+          sudo apt-get install -y cmake g++-${{ matrix.version }} libgl-dev qt6-base-dev
       - name: Build with GNU GCC ${{ matrix.version }} on ${{ matrix.os }}
         run: |
           export CXX=g++-${{ matrix.version }}
@@ -36,6 +38,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - version: 14
+            os: ubuntu-22.04
           - version: 18
             os: ubuntu-24.04
     runs-on: ${{ matrix.os }}
@@ -48,7 +52,7 @@ jobs:
       - name: Install Debian packages
         run: |
           sudo apt-get update
-          sudo apt-get install -y cmake clang-${{ matrix.version }} qt6-base-dev
+          sudo apt-get install -y cmake clang-${{ matrix.version }} libgl-dev qt6-base-dev
       - name: Build with Clang ${{ matrix.version }} on ${{ matrix.os }}
         run: |
           export CXX=clang++-${{ matrix.version }}
