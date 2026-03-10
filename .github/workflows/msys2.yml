@@ -52,6 +52,11 @@ jobs:
           rm -rf CMakeFiles cmake_install.cmake colour_mixer_autogen
           ls -lah
 
+          # copy dependencies for Qt libraries
+          ../../ci/copy-dll-dependencies.sh Qt6Core.dll ./
+          ../../ci/copy-dll-dependencies.sh Qt6Gui.dll ./
+          ../../ci/copy-dll-dependencies.sh Qt6Widgets.dll ./
+
           cd ..
           '/c/Program Files/7-Zip/7z.exe' a -r colour-mixer-build.zip colour-mixer
       - name: Upload colour mixer build
